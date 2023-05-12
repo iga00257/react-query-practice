@@ -1,6 +1,8 @@
 import './App.css'
 import { useQuery, useQueries } from 'react-query'
 import { useEffect, useState } from 'react'
+import WithoutReactQuery from './WithoutReactQuery'
+import BasicReactQuery from './BasicReactQuery'
 // https://pokeapi.co/api/v2/pokemon/1/
 const fetchPokemon = async ({ queryKey }: any) => {
   console.log(queryKey)
@@ -41,7 +43,8 @@ function App () {
     <div className="App">
       <h3>Data update at : {timeToDate(dataUpdatedAt)}</h3>
       <div className=' w-full flex justify-center '>
-      <div className=' border  p-2'>
+        <BasicReactQuery/>
+      {/* <div className=' border  p-2'>
         <p > No.00{data.id} {data.name}</p>
         <div className=' w-full flex justify-between'>
           <button onClick={() => { setPage((currentState) => currentState > 1 ? currentState - 1 : currentState) }
@@ -60,7 +63,7 @@ function App () {
           <p className=' bg-green-300' key={type.type.name}>{type.type.name}</p>
         ))}
         </div>
-      </div>
+      </div> */}
       </div>
     </div>
   )

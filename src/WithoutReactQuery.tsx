@@ -1,12 +1,10 @@
 
 import { useState, useEffect } from 'react'
 
-// https://pokeapi.co/api/v2/pokemon/1/
-
 const WithoutReactQuery = () => {
   const [data, setData] = useState([])
   const [isSuccess, setIsSuccess] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   useEffect(() => {
     // fetch pokeAPI
     const fetchPokeAPI = async () => {
@@ -16,15 +14,14 @@ const WithoutReactQuery = () => {
         const data = await response.json()
         setData(data)
         setIsSuccess(true)
-      } catch (error) {
-        console.log(error)
-        // setErrorMessage(error.message)
+      } catch (error: any) {
+        setErrorMessage(error)
       }
     }
-    fetchPokeAPI()
+    void fetchPokeAPI()
   }, [])
 
-  if (errorMessage) {
+  if (errorMessage != null) {
     return <div>{errorMessage}</div>
   }
   return (
